@@ -1,0 +1,9 @@
+*~
+.*.swp
+.DS_Store
+*.o
+session.json
+534400.json
+downloader/download
+scores/scores
+# day*/input.txt
