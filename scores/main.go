@@ -6,13 +6,27 @@ import (
 	"os"
 	"sort"
 	"strconv"
+	"strings"
 	"time"
 )
 
-type StarTs interface{}
+type StarTs int64
+
+func (v *StarTs) UnmarshalJSON(data []byte) error {
+	val := string(data)
+
+	res, err := strconv.ParseInt(strings.Trim(val, `"'`), 10, 64)
+	if err != nil {
+		return fmt.Errorf("Unable to decode %s to int64: %s", val, err)
+	}
+
+	*v = StarTs(res)
+
+	return nil
+}
 
 type Completion struct {
-	GetStarTs string `json:"get_star_ts"`
+	GetStarTs StarTs `json:"get_star_ts"`
 }
 
 type Member struct {
@@ -29,19 +43,6 @@ type Scoreboard struct {
 	Members map[int]Member `json:"members"`
 	Event   string         `json:"event"`
 	OwnerId string         `json:"owner_id"`
-}
-
-func StarTsValue(sts StarTs) int64 {
-	switch sts := sts.(type) {
-	case string:
-		ts, err := strconv.ParseInt(sts, 10, 64)
-		check(err)
-		return ts
-	case int:
-		return int64(sts)
-	default:
-		return 0
-	}
 }
 
 type UserSortable struct {
@@ -111,9 +112,7 @@ func main() {
 					continue
 				}
 
-				ts, err := strconv.ParseInt(completion.GetStarTs, 10, 64)
-				check(err)
-				users = append(users, UserSortable{s.Members[n].Name, 1, ts})
+				users = append(users, UserSortable{s.Members[n].Name, 1, int64(completion.GetStarTs)})
 			}
 			sort.Sort(ByScore(users))
 			for _, u := range users {
@@ -131,10 +130,8 @@ func main() {
 				if completion2, ok := completions[2]; ok {
 					completion1 := completions[1]
 
-					ts2, err := strconv.ParseInt(completion2.GetStarTs, 10, 64)
-					check(err)
-					ts1, err := strconv.ParseInt(completion1.GetStarTs, 10, 64)
-					check(err)
+					ts2 := int64(completion2.GetStarTs)
+					ts1 := int64(completion1.GetStarTs)
 					users = append(users, UserSortable{s.Members[n].Name, 1, ts2 - ts1})
 				}
 			}
@@ -152,7 +149,7 @@ func main() {
 
 	users := []UserSortable{}
 	for _, n := range memberNumbers {
-		ts := StarTsValue(s.Members[n].LastStarTs)
+		ts := int64(s.Members[n].LastStarTs)
 		if ts == 0 {
 			users = append(users, UserSortable{s.Members[n].Name, 0, 0})
 		} else {
@@ -183,8 +180,8 @@ func fmtDuration(d time.Duration) string {
 	m := d / time.Minute
 
 	if h > 0 {
-		return fmt.Sprintf("%4d h %2d m", h, m)
+		return fmt.Sprintf("%5d h %2d m", h, m)
 	} else {
-		return fmt.Sprintf("       %2d m", m)
+		return fmt.Sprintf("        %2d m", m)
 	}
 }
