@@ -100,7 +100,6 @@ func main() {
 			break
 		}
 		for _, j := range []int{1, 2} {
-			fmt.Printf("Day %2d part %d:\n", i, j)
 			users := []UserSortable{}
 			for _, n := range memberNumbers {
 				completions, ok := s.Members[n].CompletionDayLevel[i]
@@ -115,13 +114,18 @@ func main() {
 				users = append(users, UserSortable{s.Members[n].Name, 1, int64(completion.GetStarTs)})
 			}
 			sort.Sort(ByScore(users))
+			if len(users) > 0 {
+				fmt.Printf("Day %2d part %d:\n", i, j)
+			}
 			for _, u := range users {
 				doneAt := time.Unix(u.Finish, 0)
 				dur := doneAt.Sub(dayStart)
 
 				fmt.Printf("%*s: %s\n", maxNameLength+4, u.Name, fmtDuration(dur))
 			}
-			fmt.Printf("\n")
+			if len(users) > 0 {
+				fmt.Printf("\n")
+			}
 		}
 		// Write time from p1 to p2
 		users := []UserSortable{}
@@ -136,15 +140,18 @@ func main() {
 				}
 			}
 		}
-		fmt.Printf("Day %2d time between parts:\n", i)
+		if len(users) > 0 {
+			fmt.Printf("Day %2d time between parts:\n", i)
+		}
 		sort.Sort(ByScore(users))
 		for _, u := range users {
 			d := time.Duration(u.Finish) * time.Second
 			fmt.Printf("%*s: %s\n", maxNameLength+4, u.Name, fmtDuration(d))
 		}
-		fmt.Printf("\n")
-
-		fmt.Printf("\n")
+		if len(users) > 0 {
+			fmt.Printf("\n")
+			fmt.Printf("\n")
+		}
 	}
 
 	users := []UserSortable{}
