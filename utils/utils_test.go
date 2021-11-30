@@ -121,7 +121,6 @@ func TestCombinations(t *testing.T) {
 	}
 
 	for idx := range Combinations(len(a), 2) {
-		fmt.Println(idx)
 		for i, r := range combs {
 			d := make(map[string]bool)
 			for _, r2 := range r {
