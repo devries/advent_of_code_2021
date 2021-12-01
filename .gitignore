@@ -7,3 +7,4 @@ session.json
 downloader/download
 scores/scores
 # day*/input.txt
+day*/day*

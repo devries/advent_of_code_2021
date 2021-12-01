@@ -42,12 +42,7 @@ func solve(r io.Reader) int {
 
 	for i, curr := range sums {
 		// Convert line to integer, and check if it increased or decreased from previous measurement
-		if i == 0 {
-			// This is the first measurement
-			prev = curr
-			continue
-		}
-		if curr-prev > 0 {
+		if i > 0 && curr-prev > 0 {
 			increaseCount++
 		}
 		prev = curr

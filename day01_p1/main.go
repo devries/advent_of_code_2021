@@ -29,12 +29,7 @@ func solve(r io.Reader) int {
 		// Convert line to integer, and check if it increased or decreased from previous measurement
 		curr, err := strconv.Atoi(ln)
 		utils.Check(err, fmt.Sprintf("Error converting %s to int", ln))
-		if i == 0 {
-			// This is the first measurement
-			prev = curr
-			continue
-		}
-		if curr-prev > 0 {
+		if i > 0 && curr-prev > 0 {
 			increaseCount++
 		}
 		prev = curr
