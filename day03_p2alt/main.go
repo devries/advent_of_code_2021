@@ -42,13 +42,12 @@ func solve(r io.Reader) uint64 {
 	copy(covalues, values)
 
 	// Start filtering the numbers from MSb to LSb
-	for i := width - 1; i >= 0; i-- {
-		mask := uint64(1) << i
+	for mask := uint64(1) << (width - 1); mask > 0; mask >>= 1 {
 		// Filter the oxvalues
 		if len(oxvalues) == 1 {
 			oxval = oxvalues[0]
 		} else {
-			zeros, ones := countBits(oxvalues, i)
+			zeros, ones := countBits(oxvalues, mask)
 			if ones >= zeros {
 				oxval |= mask
 			}
@@ -59,7 +58,7 @@ func solve(r io.Reader) uint64 {
 		if len(covalues) == 1 {
 			coval = covalues[0]
 		} else {
-			zeros, ones := countBits(covalues, i)
+			zeros, ones := countBits(covalues, mask)
 			if ones < zeros {
 				coval |= mask
 			}
@@ -86,14 +85,12 @@ func parseLine(s string) uint64 {
 
 // Count the number of zeros and ones in position (numbered from 0 = least significant) of an
 // array of unsigned integers. Returns number of zeros and number of ones.
-func countBits(values []uint64, position int) (int, int) {
+func countBits(values []uint64, mask uint64) (int, int) {
 	zeros := 0
 	ones := 0
 
-	bcheck := uint64(1) << position
-
 	for _, v := range values {
-		if v&bcheck > 0 {
+		if v&mask > 0 {
 			ones++
 		} else {
 			zeros++
