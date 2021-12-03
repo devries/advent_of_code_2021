@@ -7,9 +7,11 @@ import (
 	"strconv"
 
 	"github.com/devries/advent_of_code_2021/utils"
+	"github.com/spf13/pflag"
 )
 
 func main() {
+	pflag.Parse()
 	f, err := os.Open("../inputs/day03.txt")
 	utils.Check(err, "error opening input.txt")
 	defer f.Close()
@@ -63,6 +65,11 @@ func solve(r io.Reader) uint64 {
 			}
 			covalues = filterValues(covalues, coval, mask)
 		}
+	}
+
+	if utils.Verbose {
+		fmt.Printf("oxygen generator rating: %d\n", oxval)
+		fmt.Printf("CO2 scrubber rating: %d\n", coval)
 	}
 
 	return oxval * coval
