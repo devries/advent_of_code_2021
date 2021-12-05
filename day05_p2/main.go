@@ -30,10 +30,13 @@ func solve(r io.Reader) int {
 		ds := direction(d)
 
 		// Add the vents
-		for p := p1; p != p2; p = p.Add(ds) {
+		// This is a do ... while loop, because that's just how I think
+		for p := p1; true; p = p.Add(ds) {
 			grid[p] += 1
+			if p == p2 {
+				break
+			}
 		}
-		grid[p2] += 1
 	}
 
 	// Find all points in grid greater than 2
