@@ -36,11 +36,8 @@ func solve(r io.Reader) int {
 
 		// Add the vents
 		// This is a do ... while loop, because that's just how I think
-		for p := p1; true; p = p.Add(ds) {
+		for p, ok := p1, true; ok; p, ok = p.Add(ds), p != p2 { // do ... while p != p2
 			grid[p] += 1
-			if p == p2 {
-				break
-			}
 		}
 	}
 
