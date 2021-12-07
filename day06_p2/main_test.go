@@ -26,3 +26,10 @@ func TestSolution(t *testing.T) {
 		}
 	}
 }
+
+func BenchmarkSolution(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		r := strings.NewReader(testInput)
+		solve(r, 256)
+	}
+}
