@@ -51,7 +51,8 @@ def fuelB(values, x0, known):
 
     fuel = 0
     for v in values:
-        fuel+=sum(range(1,abs(v-x0)+1))
+        d = abs(v-x0)
+        fuel+=((d+1)*d)//2
 
     known[x0] = fuel
     return fuel

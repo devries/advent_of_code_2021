@@ -77,9 +77,7 @@ func fuelCalc(values []int, pos int, fuels map[int]int) int {
 		if d < 0 {
 			d = -d
 		}
-		for i := 1; i <= d; i++ {
-			f += i
-		}
+		f += ((d + 1) * d) / 2
 	}
 
 	fuels[pos] = f
