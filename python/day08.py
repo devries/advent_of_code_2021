@@ -31,6 +31,7 @@ def main():
             if check_conversion(nums, c):
                 # This is the right value
                 total+=convert_display(disp,c)
+                break
 
     print("Part B:", total)
 
