@@ -1,7 +1,7 @@
 # Advent of Code 2021
 
 [![Tests](https://github.com/devries/advent_of_code_2021/actions/workflows/main.yml/badge.svg)](https://github.com/devries/advent_of_code_2021/actions/workflows/main.yml)
-![Stars: 16](https://img.shields.io/badge/⭐_Stars-16-yellow)
+![Stars: 18](https://img.shields.io/badge/⭐_Stars-18-yellow)
 
 ## Index
 
@@ -13,3 +13,4 @@
 - [Day 6: Lanternfish](https://adventofcode.com/2021/day/6) - [part 1](day06_p1), [part 2](day06_p2)
 - [Day 7: The Treachery of Whales](https://adventofcode.com/2021/day/7) - [part 1](day07_p1), [part 2](day07_p2)
 - [Day 8: Seven Segment Search](https://adventofcode.com/2021/day/8) - [part 1](day08_p1), [part 2](day08_p2)
+- [Day 9: Smoke Basin](https://adventofcode.com/2021/day/9) - [part 1](day09_p1), [part 2](day09_p2)
