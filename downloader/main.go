@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"os"
 	"time"
@@ -60,9 +60,7 @@ func main() {
 	}
 	defer resp.Body.Close()
 
-	body, err := ioutil.ReadAll(resp.Body)
-
-	_, err = os.Stdout.Write(body)
+	_, err = io.Copy(os.Stdout, resp.Body)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error writing output: %s\n", err)
 		os.Exit(3)

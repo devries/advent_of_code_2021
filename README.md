@@ -15,3 +15,4 @@
 - [Day 8: Seven Segment Search](https://adventofcode.com/2021/day/8) - [part 1](day08_p1), [part 2](day08_p2)
 - [Day 9: Smoke Basin](https://adventofcode.com/2021/day/9) - [part 1](day09_p1), [part 2](day09_p2)
 - [Day 10: Syntax Scoring](https://adventofcode.com/2021/day/10) - [part 1](day010_p1), [part 2](day010_p2)
+- [Day 11: Dumbo Octopus](https://adventofcode.com/2021/day/11) - [part 1](day011_p1), [part 2](day011_p2)
