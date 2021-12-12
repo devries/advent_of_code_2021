@@ -64,3 +64,32 @@ func TestSolution(t *testing.T) {
 		}
 	}
 }
+
+var bmarkInput = `TR-start
+xx-JT
+xx-TR
+hc-dd
+ab-JT
+hc-end
+dd-JT
+ab-dd
+TR-ab
+vh-xx
+hc-JT
+TR-vh
+xx-start
+hc-ME
+vh-dd
+JT-bm
+end-ab
+dd-xx
+end-TR
+hc-TR
+start-vh`
+
+func BenchmarkSolition(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		r := strings.NewReader(bmarkInput)
+		solve(r, false)
+	}
+}
