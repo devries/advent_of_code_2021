@@ -7,26 +7,30 @@ import (
 	"strings"
 
 	"github.com/devries/advent_of_code_2021/utils"
+	"github.com/spf13/pflag"
 )
 
 func main() {
+	pflag.Parse()
 	f, err := os.Open("../inputs/day12.txt")
 	utils.Check(err, "error opening input.txt")
 	defer f.Close()
 
-	r := solve(f)
+	r := solve(f, utils.Verbose)
 	fmt.Println(r)
 }
 
-func solve(r io.Reader) int {
+func solve(r io.Reader, verbose bool) int {
 	lines := utils.ReadLines(r)
 
 	maze := parseMaze(lines)
 	ch := mazeSolver(maze)
 
 	total := 0
-	for range ch {
-		// fmt.Println(p)
+	for p := range ch {
+		if verbose {
+			fmt.Println(strings.Join(p, ","))
+		}
 		total += 1
 	}
 

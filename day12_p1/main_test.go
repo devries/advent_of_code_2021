@@ -53,10 +53,11 @@ func TestSolution(t *testing.T) {
 		{testInputLarge, 226},
 	}
 
-	for _, test := range tests {
+	for i, test := range tests {
 		r := strings.NewReader(test.input)
 
-		result := solve(r)
+		t.Logf("Test %d:", i+1)
+		result := solve(r, testing.Verbose())
 
 		if result != test.answer {
 			t.Errorf("Expected %d, got %d", test.answer, result)
