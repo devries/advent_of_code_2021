@@ -1,7 +1,7 @@
 # Advent of Code 2021
 
 [![Tests](https://github.com/devries/advent_of_code_2021/actions/workflows/main.yml/badge.svg)](https://github.com/devries/advent_of_code_2021/actions/workflows/main.yml)
-![Stars: 22](https://img.shields.io/badge/⭐_Stars-22-yellow)
+![Stars: 24](https://img.shields.io/badge/⭐_Stars-24-yellow)
 
 ## Index
 
@@ -16,3 +16,4 @@
 - [Day 9: Smoke Basin](https://adventofcode.com/2021/day/9) - [part 1](day09_p1), [part 2](day09_p2)
 - [Day 10: Syntax Scoring](https://adventofcode.com/2021/day/10) - [part 1](day010_p1), [part 2](day010_p2)
 - [Day 11: Dumbo Octopus](https://adventofcode.com/2021/day/11) - [part 1](day011_p1), [part 2](day011_p2)
+- [Day 12: Passage Pathing](https://adventofcode.com/2021/day/12) - [part 1](day012_p1), [part 2](day012_p2)

@@ -53,34 +53,30 @@ func mazeSolver(maze map[string][]string) <-chan []string {
 	seen := make(map[string]int)
 
 	go func() {
-		mazeSolveRecursor(maze, &path, seen, ch)
+		mazeSolveRecursor(maze, &path, seen, 2, ch)
 		close(ch)
 	}()
 
 	return ch
 }
 
-func mazeSolveRecursor(maze map[string][]string, path *[]string, seen map[string]int, ch chan<- []string) {
+func mazeSolveRecursor(maze map[string][]string, path *[]string, seen map[string]int, maxseen int, ch chan<- []string) {
 	current := (*path)[len(*path)-1]
 
+	maxallowed := maxseen
 	if current == strings.ToLower(current) {
-		maxallowed := 2
 		if current == "start" {
 			maxallowed = 1
-		} else {
-			for _, v := range seen {
-				if v == 2 {
-					maxallowed = 1
-					break
-				}
-			}
 		}
 
 		if seen[current] >= maxallowed {
 			// do not continue path
 			return
 		}
-		seen[current]++
+
+		if seen[current]++; seen[current] == 2 {
+			maxseen = 1
+		}
 	}
 
 	if current == "end" {
@@ -99,7 +95,7 @@ func mazeSolveRecursor(maze map[string][]string, path *[]string, seen map[string
 
 	for _, room := range nextsteps {
 		(*path)[nextpos] = room
-		mazeSolveRecursor(maze, path, seen, ch)
+		mazeSolveRecursor(maze, path, seen, maxseen, ch)
 	}
 
 	*path = (*path)[:nextpos]
