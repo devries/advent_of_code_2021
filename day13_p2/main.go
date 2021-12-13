@@ -46,7 +46,7 @@ func solve(r io.Reader) {
 		for j := 0; j <= maxY; j++ {
 			for i := 0; i <= maxX; i++ {
 				if pts[utils.Point{X: i, Y: j}] {
-					fmt.Printf("#")
+					fmt.Printf("\u2588")
 				} else {
 					fmt.Printf(" ")
 				}
