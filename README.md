@@ -17,4 +17,4 @@
 - [Day 10: Syntax Scoring](https://adventofcode.com/2021/day/10) - [part 1](day10_p1), [part 2](day10_p2)
 - [Day 11: Dumbo Octopus](https://adventofcode.com/2021/day/11) - [part 1](day11_p1), [part 2](day11_p2)
 - [Day 12: Passage Pathing](https://adventofcode.com/2021/day/12) - [part 1](day12_p1), [part 2](day12_p2)
-- [Day 13: Passage Pathing](https://adventofcode.com/2021/day/13) - [part 1](day13_p1), [part 2](day13_p2)
+- [Day 13: Transparent Origami](https://adventofcode.com/2021/day/13) - [part 1](day13_p1), [part 2](day13_p2)
