@@ -1,7 +1,7 @@
 # Advent of Code 2021
 
 [![Tests](https://github.com/devries/advent_of_code_2021/actions/workflows/main.yml/badge.svg)](https://github.com/devries/advent_of_code_2021/actions/workflows/main.yml)
-![Stars: 24](https://img.shields.io/badge/⭐_Stars-24-yellow)
+![Stars: 26](https://img.shields.io/badge/⭐_Stars-26-yellow)
 
 ## Index
 
@@ -17,3 +17,4 @@
 - [Day 10: Syntax Scoring](https://adventofcode.com/2021/day/10) - [part 1](day10_p1), [part 2](day10_p2)
 - [Day 11: Dumbo Octopus](https://adventofcode.com/2021/day/11) - [part 1](day11_p1), [part 2](day11_p2)
 - [Day 12: Passage Pathing](https://adventofcode.com/2021/day/12) - [part 1](day12_p1), [part 2](day12_p2)
+- [Day 13: Passage Pathing](https://adventofcode.com/2021/day/13) - [part 1](day13_p1), [part 2](day13_p2)
