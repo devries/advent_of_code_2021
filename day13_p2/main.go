@@ -16,13 +16,11 @@ func main() {
 	utils.Check(err, "error opening input.txt")
 	defer f.Close()
 
-	solve(f)
-	if !utils.Verbose {
-		fmt.Println("use -v to see result")
-	}
+	r := solve(f)
+	fmt.Println(r)
 }
 
-func solve(r io.Reader) {
+func solve(r io.Reader) string {
 	lines := utils.ReadLines(r)
 
 	pts, folds := parseSheet(lines)
@@ -30,19 +28,19 @@ func solve(r io.Reader) {
 		fold.do(pts)
 	}
 
-	if utils.Verbose {
-		maxX := 0
-		maxY := 0
+	maxX := 0
+	maxY := 0
 
-		for k := range pts {
-			if k.X > maxX {
-				maxX = k.X
-			}
-			if k.Y > maxY {
-				maxY = k.Y
-			}
+	for k := range pts {
+		if k.X > maxX {
+			maxX = k.X
 		}
+		if k.Y > maxY {
+			maxY = k.Y
+		}
+	}
 
+	if utils.Verbose {
 		for j := 0; j <= maxY; j++ {
 			for i := 0; i <= maxX; i++ {
 				if pts[utils.Point{X: i, Y: j}] {
@@ -54,6 +52,20 @@ func solve(r io.Reader) {
 			fmt.Printf("\n")
 		}
 	}
+	var sb strings.Builder
+	for j := 0; j <= maxY; j++ {
+		for i := 0; i <= maxX; i++ {
+			if pts[utils.Point{X: i, Y: j}] {
+				sb.WriteRune('#')
+			} else {
+				sb.WriteRune('.')
+			}
+		}
+		sb.WriteRune('\n')
+	}
+
+	res := utils.OCRLetters(sb.String())
+	return res
 }
 
 type Fold struct {
