@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io"
+	"math"
 	"os"
 
 	"github.com/devries/advent_of_code_2021/utils"
@@ -27,12 +28,12 @@ func solve(r io.Reader) int64 {
 	}
 	ct := polymer.Count()
 
-	var min, max int64
+	min, max := int64(math.MaxInt64), int64(0)
 	for _, v := range ct {
 		if v > max {
 			max = v
 		}
-		if min == 0 || v < min {
+		if v < min {
 			min = v
 		}
 	}
