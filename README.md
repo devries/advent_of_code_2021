@@ -1,7 +1,7 @@
 # Advent of Code 2021
 
 [![Tests](https://github.com/devries/advent_of_code_2021/actions/workflows/main.yml/badge.svg)](https://github.com/devries/advent_of_code_2021/actions/workflows/main.yml)
-![Stars: 26](https://img.shields.io/badge/⭐_Stars-26-yellow)
+![Stars: 28](https://img.shields.io/badge/⭐_Stars-28-yellow)
 
 ## Index
 
@@ -18,3 +18,4 @@
 - [Day 11: Dumbo Octopus](https://adventofcode.com/2021/day/11) - [part 1](day11_p1/main.go), [part 2](day11_p2/main.go)
 - [Day 12: Passage Pathing](https://adventofcode.com/2021/day/12) - [part 1](day12_p1/main.go), [part 2](day12_p2/main.go)
 - [Day 13: Transparent Origami](https://adventofcode.com/2021/day/13) - [part 1](day13_p1/main.go), [part 2](day13_p2/main.go)
+- [Day 14: Extended Polymerization](https://adventofcode.com/2021/day/14) - [part 1](day14_p1/main.go), [part 2](day14_p2/main.go)
