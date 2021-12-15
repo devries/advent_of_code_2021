@@ -29,28 +29,22 @@ func solve(r io.Reader) int {
 }
 
 type Grid struct {
-	Points map[utils.Point]GridPoint
+	Points map[utils.Point]int
 	X      int
 	Y      int
-}
-
-// Need to define this for easier sorting later
-type GridPoint struct {
-	Point utils.Point
-	Value int
 }
 
 func parseGrid(lines []string) Grid {
 	xsize := len([]rune(lines[0]))
 	ysize := len(lines)
-	r := Grid{make(map[utils.Point]GridPoint), xsize * 5, ysize * 5}
+	r := Grid{make(map[utils.Point]int), xsize * 5, ysize * 5}
 
 	for j := 0; j < r.Y; j++ {
 		for i := 0; i < r.X; i++ {
 			ln := lines[j%ysize]
 			c := []rune(ln)[i%xsize]
 			scoreIncrement := i/xsize + j/ysize
-			r.Points[utils.Point{X: i, Y: j}] = GridPoint{utils.Point{X: i, Y: j}, (int(c-'0')-1+scoreIncrement)%9 + 1}
+			r.Points[utils.Point{X: i, Y: j}] = (int(c-'0')-1+scoreIncrement)%9 + 1
 		}
 	}
 
@@ -124,10 +118,11 @@ func solveGrid(grid Grid) int {
 		item := heap.Pop(&queue).(*QueueItem)
 
 		for _, d := range utils.Directions {
-			n, ok := grid.Points[item.Point.Add(d)]
+			next := item.Point.Add(d)
+			value, ok := grid.Points[item.Point.Add(d)]
 			if ok {
-				qi := allpoints[n.Point]
-				newscore := item.Score + n.Value
+				qi := allpoints[next]
+				newscore := item.Score + value
 				if newscore < qi.Score {
 					queue.update(qi, newscore)
 				}
