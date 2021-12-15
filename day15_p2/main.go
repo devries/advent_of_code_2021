@@ -1,10 +1,11 @@
 package main
 
 import (
+	"container/heap"
 	"fmt"
 	"io"
+	"math"
 	"os"
-	"sort"
 
 	"github.com/devries/advent_of_code_2021/utils"
 )
@@ -56,50 +57,83 @@ func parseGrid(lines []string) Grid {
 	return r
 }
 
-type State struct {
+// Define a priority Queue and associated container.Heap interfaces
+type QueueItem struct {
+	Point utils.Point
 	Score int
-	Pos   utils.Point
+	Index int
+}
+
+type PriorityQueue []*QueueItem
+
+func (q PriorityQueue) Len() int { return len(q) }
+
+func (q PriorityQueue) Less(i, j int) bool {
+	return q[i].Score < q[j].Score
+}
+
+func (q PriorityQueue) Swap(i, j int) {
+	q[i], q[j] = q[j], q[i]
+	q[i].Index = i
+	q[j].Index = j
+}
+
+func (q *PriorityQueue) Push(x interface{}) {
+	n := len(*q)
+	point := x.(*QueueItem)
+	point.Index = n
+	*q = append(*q, point)
+}
+
+func (q *PriorityQueue) Pop() interface{} {
+	old := *q
+	n := len(old)
+	item := old[n-1]
+	old[n-1] = nil
+	item.Index = -1
+	*q = old[0 : n-1]
+	return item
+}
+
+func (q *PriorityQueue) update(item *QueueItem, score int) {
+	item.Score = score
+	heap.Fix(q, item.Index)
 }
 
 func solveGrid(grid Grid) int {
-	best := make(map[utils.Point]int) // Best score found to that point
-	queue := make([]State, 0)
+	queue := make(PriorityQueue, grid.X*grid.Y)
+	allpoints := make(map[utils.Point]*QueueItem)
 
-	start := utils.Point{X: 0, Y: 0}
-	best[start] = 0
-	queue = append(queue, State{0, start})
-
-	for len(queue) > 0 {
-		currentState := queue[0]
-		queue = queue[1:]
-
-		// Has this point seen a better outcome already?
-		if currentState.Score > best[currentState.Pos] {
-			continue
-		}
-
-		next := []GridPoint{}
-		for _, d := range utils.Directions {
-			n, ok := grid.Points[currentState.Pos.Add(d)]
-			if ok {
-				if b, ok := best[n.Point]; ok {
-					vnext := currentState.Score + n.Value
-					if b > vnext {
-						best[n.Point] = vnext
-						next = append(next, n)
-					}
-				} else {
-					best[n.Point] = currentState.Score + n.Value
-					next = append(next, n)
-				}
+	idx := 0
+	for j := 0; j < grid.Y; j++ {
+		for i := 0; i < grid.X; i++ {
+			pt := utils.Point{X: i, Y: j}
+			var qi = QueueItem{pt, math.MaxInt, idx}
+			if i == 0 && j == 0 {
+				qi.Score = 0
 			}
-		}
-		sort.Slice(next, func(i, j int) bool { return next[i].Value < next[j].Value })
-
-		for _, gp := range next {
-			queue = append(queue, State{currentState.Score + gp.Value, gp.Point})
+			queue[idx] = &qi
+			allpoints[pt] = &qi
+			idx++
 		}
 	}
 
-	return best[utils.Point{X: grid.X - 1, Y: grid.Y - 1}]
+	heap.Init(&queue)
+
+	for queue.Len() > 0 {
+		item := heap.Pop(&queue).(*QueueItem)
+
+		for _, d := range utils.Directions {
+			n, ok := grid.Points[item.Point.Add(d)]
+			if ok {
+				qi := allpoints[n.Point]
+				newscore := item.Score + n.Value
+				if newscore < qi.Score {
+					queue.update(qi, newscore)
+				}
+			}
+		}
+	}
+
+	return (*allpoints[utils.Point{X: grid.X - 1, Y: grid.Y - 1}]).Score
 }
