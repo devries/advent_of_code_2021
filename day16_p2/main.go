@@ -17,7 +17,7 @@ func main() {
 	utils.Check(err, "error opening input.txt")
 	defer f.Close()
 
-	r := solve(f)
+	r := solve(f, utils.Verbose)
 	fmt.Println(r)
 }
 
@@ -97,12 +97,12 @@ func (o *Operator) String() string {
 	return fmt.Sprintf("v:%d|t:%d[\n%s\n]", o.PacketVersion, o.PacketType, strings.Join(parts, "\n"))
 }
 
-func solve(r io.Reader) *big.Int {
+func solve(r io.Reader, verbose bool) *big.Int {
 	lines := utils.ReadLines(r)
 	pd := parseFile(lines)
 
 	pk, _ := parsePacket(pd, 0)
-	if utils.Verbose {
+	if verbose {
 		fmt.Println(pk)
 	}
 

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math/big"
 	"strings"
 	"testing"
@@ -24,7 +25,10 @@ func TestSolution(t *testing.T) {
 	for _, test := range tests {
 		r := strings.NewReader(test.input)
 
-		result := solve(r)
+		result := solve(r, testing.Verbose())
+		if testing.Verbose() {
+			fmt.Printf("Result: %d\n\n", result)
+		}
 
 		if result.Cmp(test.answer) != 0 {
 			t.Errorf("%s: expected %s, got %s", test.input, test.answer, result)
