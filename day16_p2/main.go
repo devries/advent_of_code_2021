@@ -84,12 +84,17 @@ func (o *Operator) Type() int64 {
 
 func (o *Operator) String() string {
 	parts := make([]string, 0)
+	pad := "\t"
 
 	for _, v := range o.Packets {
-		parts = append(parts, v.String())
-	}
+		sub := v.String()
+		subparts := strings.Split(sub, "\n")
 
-	return fmt.Sprintf("v:%d|t:%d[%s]", o.PacketVersion, o.PacketType, strings.Join(parts, ","))
+		for _, p := range subparts {
+			parts = append(parts, fmt.Sprintf("%s%s", pad, p))
+		}
+	}
+	return fmt.Sprintf("v:%d|t:%d[\n%s\n]", o.PacketVersion, o.PacketType, strings.Join(parts, "\n"))
 }
 
 func solve(r io.Reader) *big.Int {
