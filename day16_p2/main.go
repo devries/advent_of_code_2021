@@ -11,6 +11,17 @@ import (
 	"github.com/spf13/pflag"
 )
 
+var operationMap = map[int64]string{
+	0: "sum",
+	1: "mul",
+	2: "min",
+	3: "max",
+	4: "num",
+	5: "gt",
+	6: "lt",
+	7: "eq",
+}
+
 func main() {
 	pflag.Parse()
 	f, err := os.Open("../inputs/day16.txt")
@@ -59,7 +70,7 @@ func (l Literal) Type() int64 {
 }
 
 func (l Literal) String() string {
-	return fmt.Sprintf("v:%d|t:%d=%s", l.PacketVersion, l.PacketType, l.Value.String())
+	return fmt.Sprintf("v:%d|t:%d(num)=%s", l.PacketVersion, l.PacketType, l.Value.String())
 }
 
 type Operator struct {
@@ -94,7 +105,7 @@ func (o *Operator) String() string {
 			parts = append(parts, fmt.Sprintf("%s%s", pad, p))
 		}
 	}
-	return fmt.Sprintf("v:%d|t:%d[\n%s\n]", o.PacketVersion, o.PacketType, strings.Join(parts, "\n"))
+	return fmt.Sprintf("v:%d|t:%d(%s)[\n%s\n]", o.PacketVersion, o.PacketType, operationMap[o.PacketType], strings.Join(parts, "\n"))
 }
 
 func solve(r io.Reader, verbose bool) *big.Int {
