@@ -1,7 +1,7 @@
 # Advent of Code 2021
 
 [![Tests](https://github.com/devries/advent_of_code_2021/actions/workflows/main.yml/badge.svg)](https://github.com/devries/advent_of_code_2021/actions/workflows/main.yml)
-![Stars: 30](https://img.shields.io/badge/⭐_Stars-30-yellow)
+![Stars: 32](https://img.shields.io/badge/⭐_Stars-32-yellow)
 
 ## Index
 
@@ -20,3 +20,4 @@
 - [Day 13: Transparent Origami](https://adventofcode.com/2021/day/13) - [part 1](day13_p1/main.go), [part 2](day13_p2/main.go)
 - [Day 14: Extended Polymerization](https://adventofcode.com/2021/day/14) - [part 1](day14_p1/main.go), [part 2](day14_p2/main.go)
 - [Day 15: Chiton](https://adventofcode.com/2021/day/15) - [part 1](day15_p1/main.go), [part 2](day15_p2/main.go)
+- [Day 16: Packet Decoder](https://adventofcode.com/2021/day/16) - [part 1](day16_p1/main.go), [part 2](day16_p2/main.go)
