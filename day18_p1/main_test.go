@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"strings"
 	"testing"
 )
@@ -67,6 +68,41 @@ func TestSplit(t *testing.T) {
 	for _, test := range tests {
 		el, _ := parseSnailNumber([]rune(test.input), 0)
 		split(el)
+		result := el.String()
+
+		if result != test.answer {
+			t.Errorf("Expected %s, got %s", test.answer, result)
+		}
+	}
+}
+
+func TestReduce(t *testing.T) {
+	tests := []struct {
+		input  string
+		answer string
+	}{
+		{"[[[[[4,3],4],4],[7,[[8,4],9]]],[1,1]]", "[[[[0,7],4],[[7,8],[6,0]]],[8,1]]"},
+	}
+
+	for _, test := range tests {
+		el, _ := parseSnailNumber([]rune(test.input), 0)
+
+		for {
+			if testing.Verbose() {
+				fmt.Printf("%s -> %s\n", el, scanElements(el, 0, nil, ""))
+			}
+
+			explodeTest := explode(el)
+			if explodeTest {
+				continue
+			}
+			splitTest := split(el)
+			if splitTest {
+				continue
+			}
+
+			break
+		}
 		result := el.String()
 
 		if result != test.answer {

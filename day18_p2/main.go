@@ -5,6 +5,7 @@ import (
 	"io"
 	"os"
 	"strconv"
+	"strings"
 
 	"github.com/devries/advent_of_code_2021/utils"
 	"github.com/spf13/pflag"
@@ -128,14 +129,33 @@ type ChainLink struct {
 	parentSide string
 }
 
+type Chain []ChainLink
+
+func (c Chain) String() string {
+	var sb strings.Builder
+
+	sb.WriteRune('[')
+
+	for i, cl := range c {
+		if i != 0 {
+			sb.WriteRune(',')
+		}
+		sb.WriteString(cl.e.String())
+	}
+
+	sb.WriteRune(']')
+
+	return sb.String()
+}
+
 // Return all elements in order up to depth 4
-func scanElements(e Element, depth int, parent *Pair, side string) []ChainLink {
+func scanElements(e Element, depth int, parent *Pair, side string) Chain {
 	switch v := e.(type) {
 	case *Pair:
 		if depth == 4 {
-			return []ChainLink{{v, 4, parent, side}}
+			return Chain{{v, 4, parent, side}}
 		}
-		ret := make([]ChainLink, 0)
+		ret := make(Chain, 0)
 		leftElements := scanElements(v.left, depth+1, v, "left")
 		ret = append(ret, leftElements...)
 		rightElements := scanElements(v.right, depth+1, v, "right")
@@ -143,10 +163,10 @@ func scanElements(e Element, depth int, parent *Pair, side string) []ChainLink {
 		return ret
 	case *Number:
 		cl := ChainLink{v, depth, parent, side}
-		return []ChainLink{cl}
+		return Chain{cl}
 	}
 
-	return []ChainLink{}
+	return Chain{}
 }
 
 // Explode first value, return true if explosion happens
