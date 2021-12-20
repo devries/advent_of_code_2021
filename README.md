@@ -1,7 +1,7 @@
 # Advent of Code 2021
 
 [![Tests](https://github.com/devries/advent_of_code_2021/actions/workflows/main.yml/badge.svg)](https://github.com/devries/advent_of_code_2021/actions/workflows/main.yml)
-![Stars: 38](https://img.shields.io/badge/⭐_Stars-38-yellow)
+![Stars: 40](https://img.shields.io/badge/⭐_Stars-40-yellow)
 
 ## Index
 
@@ -24,3 +24,4 @@
 - [Day 17: Trick Shot](https://adventofcode.com/2021/day/17) - [part 1](day17_p1/main.go), [part 2](day17_p2/main.go)
 - [Day 18: Snailfish](https://adventofcode.com/2021/day/18) - [part 1](day18_p1/main.go), [part 2](day18_p2/main.go)
 - [Day 19: Beacon Scanner](https://adventofcode.com/2021/day/19) - [part 1](day19_p1/main.go), [part 2](day19_p2/main.go)
+- [Day 20: Trench Map](https://adventofcode.com/2021/day/20) - [part 1](day20_p1/main.go), [part 2](day20_p2/main.go)
