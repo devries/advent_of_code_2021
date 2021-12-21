@@ -72,20 +72,16 @@ type State struct {
 
 func step(s map[State]int64, turn int) bool {
 	keepgoing := false
-	keys := make([]State, len(s))
+	keys := make([]State, 0)
 
-	i := 0
+	// Find the states that will evolve this turn
 	for k := range s {
-		keys[i] = k
-		i++
+		if k.Score < 21 && k.Turns == turn-1 {
+			keys = append(keys, k)
+		}
 	}
 
 	for _, k := range keys {
-		// Need to make sure I only evolve each state once.
-		if k.Score >= 21 || k.Turns != turn-1 {
-			continue
-		}
-
 		for i := 3; i <= 9; i++ {
 			pos := (k.Position + i) % 10
 			var score int
