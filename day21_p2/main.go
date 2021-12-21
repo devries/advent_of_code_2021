@@ -72,8 +72,15 @@ type State struct {
 
 func step(s map[State]int64, turn int) bool {
 	keepgoing := false
+	keys := make([]State, len(s))
 
-	for k, v := range s {
+	i := 0
+	for k := range s {
+		keys[i] = k
+		i++
+	}
+
+	for _, k := range keys {
 		// Need to make sure I only evolve each state once.
 		if k.Score >= 21 || k.Turns != turn-1 {
 			continue
@@ -91,7 +98,7 @@ func step(s map[State]int64, turn int) bool {
 				keepgoing = true
 			}
 
-			s[State{score, pos, turn}] += v * universeMultiplier[i]
+			s[State{score, pos, turn}] += s[k] * universeMultiplier[i]
 		}
 	}
 
