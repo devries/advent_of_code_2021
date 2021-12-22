@@ -1,7 +1,7 @@
 # Advent of Code 2021
 
 [![Tests](https://github.com/devries/advent_of_code_2021/actions/workflows/main.yml/badge.svg)](https://github.com/devries/advent_of_code_2021/actions/workflows/main.yml)
-![Stars: 42](https://img.shields.io/badge/⭐_Stars-42-yellow)
+![Stars: 44](https://img.shields.io/badge/⭐_Stars-44-yellow)
 
 ## Index
 
@@ -25,4 +25,5 @@
 - [Day 18: Snailfish](https://adventofcode.com/2021/day/18) - [part 1](day18_p1/main.go), [part 2](day18_p2/main.go)
 - [Day 19: Beacon Scanner](https://adventofcode.com/2021/day/19) - [part 1](day19_p1/main.go), [part 2](day19_p2/main.go)
 - [Day 20: Trench Map](https://adventofcode.com/2021/day/20) - [part 1](day20_p1/main.go), [part 2](day20_p2/main.go)
-- [Day 21: Dirac Dice](https://adventofcode.com/2121/day/21) - [part 1](day21_p1/main.go), [part 2](day21_p2/main.go)
+- [Day 21: Dirac Dice](https://adventofcode.com/2021/day/21) - [part 1](day21_p1/main.go), [part 2](day21_p2/main.go)
+- [Day 22: Dirac Dice](https://adventofcode.com/2021/day/22) - [part 1](day22_p1/main.go), [part 2](day22_p2/main.go)
