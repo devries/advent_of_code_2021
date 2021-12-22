@@ -26,4 +26,4 @@
 - [Day 19: Beacon Scanner](https://adventofcode.com/2021/day/19) - [part 1](day19_p1/main.go), [part 2](day19_p2/main.go)
 - [Day 20: Trench Map](https://adventofcode.com/2021/day/20) - [part 1](day20_p1/main.go), [part 2](day20_p2/main.go)
 - [Day 21: Dirac Dice](https://adventofcode.com/2021/day/21) - [part 1](day21_p1/main.go), [part 2](day21_p2/main.go)
-- [Day 22: Dirac Dice](https://adventofcode.com/2021/day/22) - [part 1](day22_p1/main.go), [part 2](day22_p2/main.go)
+- [Day 22: Reactor Reboot](https://adventofcode.com/2021/day/22) - [part 1](day22_p1/main.go), [part 2](day22_p2/main.go)
