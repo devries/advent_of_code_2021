@@ -2,11 +2,23 @@ package main
 
 import (
 	"fmt"
+	"os"
+
+	"github.com/devries/advent_of_code_2021/utils"
 )
 
 func main() {
-	startA := 1
-	startB := 2
+	f, err := os.Open("../inputs/day21.txt")
+	utils.Check(err, "error opening input file")
+	defer f.Close()
+
+	lines := utils.ReadLines(f)
+
+	var startA, startB int
+	_, err = fmt.Sscanf(lines[0], "Player 1 starting position: %d", &startA)
+	utils.Check(err, "unable to parse input")
+	_, err = fmt.Sscanf(lines[1], "Player 2 starting position: %d", &startB)
+	utils.Check(err, "unable to parse input")
 
 	r := solve(startA, startB)
 	fmt.Println(r)

@@ -3,17 +3,23 @@ package main
 import (
 	"fmt"
 	"math"
-)
+	"os"
 
-const (
-	XMin = 207
-	XMax = 263
-	YMin = -115
-	YMax = -63
+	"github.com/devries/advent_of_code_2021/utils"
 )
 
 func main() {
-	r := solve(XMin, XMax, YMin, YMax)
+	f, err := os.Open("../inputs/day17.txt")
+	utils.Check(err, "error opening input file")
+	defer f.Close()
+
+	lines := utils.ReadLines(f)
+
+	var xmin, xmax, ymin, ymax int
+	_, err = fmt.Sscanf(lines[0], "target area: x=%d..%d, y=%d..%d", &xmin, &xmax, &ymin, &ymax)
+	utils.Check(err, "unable to parse input")
+
+	r := solve(xmin, xmax, ymin, ymax)
 	fmt.Println(r)
 }
 
