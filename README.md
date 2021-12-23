@@ -108,3 +108,9 @@
   which never intersect further instructions, and so on. It ended up being
   reasonably fast because there are only a limited number of overlapping
   instruction intersections.
+
+- [Day 23: Amphipod](https://adventofcode.com/2021/day/23) - [part 1](day23_p1/main.go), [part 2](day23_p2/main.go)
+
+  It took me a long time to figure out how to define the state of this problem,
+  then I had an error which I couldn't find for a long time. It's interesting,
+  but I did not have a good time doing it.
