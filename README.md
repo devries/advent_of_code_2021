@@ -1,7 +1,7 @@
 # Advent of Code 2021
 
 [![Tests](https://github.com/devries/advent_of_code_2021/actions/workflows/main.yml/badge.svg)](https://github.com/devries/advent_of_code_2021/actions/workflows/main.yml)
-[![Stars: 46](https://img.shields.io/badge/⭐_Stars-46-yellow)](https://adventofcode.com/2021)
+[![Stars: 48](https://img.shields.io/badge/⭐_Stars-48-yellow)](https://adventofcode.com/2021)
 
 ## Index
 
@@ -114,3 +114,9 @@
   It took me a long time to figure out how to define the state of this problem,
   then I had an error which I couldn't find for a long time. It's interesting,
   but I did not have a good time doing it.
+
+- [Day 24: Arithmetic Logic Unit](https://adventofcode.com/2021/day/24) - [part 1](day24_p1/main.go), [part 2](day24_p2/main.go)
+
+  I used a depth-first search keeping track of states I had already seen. This
+  is very slow and takes a lot of memory. There must be a better way. I will
+  work on this again later.
