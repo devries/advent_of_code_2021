@@ -115,7 +115,7 @@
   then I had an error which I couldn't find for a long time. It's interesting,
   but I did not have a good time doing it.
 
-- [Day 24: Arithmetic Logic Unit](https://adventofcode.com/2021/day/24) - [part 1](day24_p1/main.go), [part 2](day24_p2/main.go)
+- [Day 24: Arithmetic Logic Unit](https://adventofcode.com/2021/day/24) - [part 1](day24_p1_slow/main.go), [part 2](day24_p2_slow/main.go)
 
   I used a depth-first search keeping track of states I had already seen. This
   is very slow and takes a lot of memory. There must be a better way. I will
