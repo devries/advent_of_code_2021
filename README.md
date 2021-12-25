@@ -1,7 +1,7 @@
 # Advent of Code 2021
 
 [![Tests](https://github.com/devries/advent_of_code_2021/actions/workflows/main.yml/badge.svg)](https://github.com/devries/advent_of_code_2021/actions/workflows/main.yml)
-[![Stars: 48](https://img.shields.io/badge/⭐_Stars-48-yellow)](https://adventofcode.com/2021)
+[![Stars: 50](https://img.shields.io/badge/⭐_Stars-50-yellow)](https://adventofcode.com/2021)
 
 ## Index
 
@@ -120,3 +120,5 @@
   I used a depth-first search keeping track of states I had already seen. This
   is very slow and takes a lot of memory. There must be a better way. I will
   work on this again later.
+
+- [Day 25: Sea Cucumber](https://adventofcode.com/2021/day/25) - [part 1](day25_p1/main.go)
