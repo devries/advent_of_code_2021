@@ -115,10 +115,15 @@
   then I had an error which I couldn't find for a long time. It's interesting,
   but I did not have a good time doing it.
 
-- [Day 24: Arithmetic Logic Unit](https://adventofcode.com/2021/day/24) - [part 1](day24_p1_slow/main.go), [part 2](day24_p2_slow/main.go)
+- [Day 24: Arithmetic Logic Unit](https://adventofcode.com/2021/day/24) - [part 1](day24_p1/main.go), [part 2](day24_p2/main.go)
 
-  I used a depth-first search keeping track of states I had already seen. This
-  is very slow and takes a lot of memory. There must be a better way. I will
-  work on this again later.
+  I used a depth-first search keeping track of states I had already seen in
+  order to solve this during Advent of Code, but a few days later I came back to
+  this problem and worked out the pattern. Each digit was read with the same
+  subroutine save for a few constants which were changed each time. The input
+  was essentially being added onto a stack in register z with an added constant
+  and some inputs were being popped off and compared to these values with the
+  addition of a second constant. Once the pairings and constants are worked out
+  the maximum and minimum solutions can be derived.
 
 - [Day 25: Sea Cucumber](https://adventofcode.com/2021/day/25) - [part 1](day25_p1/main.go)

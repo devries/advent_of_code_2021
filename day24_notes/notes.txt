@@ -1,0 +1,46 @@
+# Cycle
+inp w          ; w = INPUT DIGIT
+mul x 0        ; SKIP x = 0
+add x z        ; SKIP x = z
+mod x 26       ; x = z%26
+div z TOGGLE   ; z /= TOGGLE (1 or 26) [1, 1, 1, 1, 26, 1, 1, 26, 26, 26, 1, 26, 26, 26]
+add x VARA     ; x = x + VARA [14, 15, 12, 11, -5, 14, 15, -13, -16, -8, 15, -8, 0, -4]
+eql x w        ; SKIP x = (x == w ? 1 : 0)  -
+eql x 0        ; [REPLACE x = (x == 0 ? 1 : 0)]  - Combine with above for x = ( x == w ? 0 : 1)
+mul y 0        ; SKIP y = 0
+add y 25       ; SKIP y = 25
+mul y x        ; SKIP y = 25*x
+add y 1        ; y = 25*x+1  (if x==w; y=1; else y=26)
+mul z y        ; z *= y      (if x==w; z=z; else z*=26)
+mul y 0        ; SKIP y = 0
+add y w        ; SKIP y = w
+add y VARB     ; y = w + VARB  [12, 7, 1, 2, 4, 15, 11, 5, 3, 9, 2, 3, 3, 11]
+mul y x        ; y *= x (if x==w; y=0; else y = w+VARB)
+add z y        ; z += y (if x==w; z=z; else z = z+=w+VARB)
+
+## Notes
+LINE 1-6:
+get last entry to z
+- Either div z by 26 or don't.
+- x = (z%26)+VARA --- is this the input number?
+LINE 7 onward: 
+if x == w { // if so
+  z unchanged
+} else { // or else multiply z by 26 and add the input plus VARB 
+  z = 26*z+w+VARB
+}
+
+In case TOGGLE=1:
+x adds between 11 and 15 to number so it can never equal w
+z = 26*z+w+VARB
+
+in case TOGGLE=26
+x = w+5, w+13, w+16, w+8, w+8, w+0, w+4 ==== z%26
+
+d0+12, d1+7, d2+1, d3+2, (d3+2)-5==d4, d5+15, d6+11, d6+11-13=d7, d5+15-16=d8, d2+1-8=d9, d10+2, d10+2-8=d11, d1+7-0=d12, d0+12-4=d13 
+
+If toggle = 1
+Push digit+VARB
+
+If toggle = 26
+digit+VARA == pop ---- Required
