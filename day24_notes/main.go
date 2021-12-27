@@ -28,14 +28,20 @@ func solve(r io.Reader) {
 	alu.registers["z"] = Stack{"0"}
 	alu = Execute(alu, lines)
 	for k, v := range alu.registers {
-		fmt.Printf("%s: %v\n", k, findDeps(v))
+		fmt.Printf("%s: %v\nDepends: %v\n\n", k, v, findDeps(v))
 	}
 	for i, s := range alu.conditions {
-		fmt.Printf("cond:%d: %v\n\n", i, findDeps(s))
+		fmt.Printf("cond:%d: %v\nDepends: %v\n\n", i, s, findDeps(s))
 	}
 
-	fmt.Println(alu.conditions[0])
-	fmt.Println(Evaluate(alu, []int64{1}, "cond:0"))
+	for i := int64(1); i < 10; i++ {
+		sol, ok := Evaluate(alu, []int64{i}, "cond:1")
+		if ok {
+			fmt.Printf("inp:0 = %d then cond:1 = %d\n", i, sol)
+		} else {
+			fmt.Printf("inp:0 = %d then cond:1 is undefined\n", i)
+		}
+	}
 }
 
 func findDeps(ops []string) []string {
