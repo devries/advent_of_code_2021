@@ -6,9 +6,11 @@ import (
 	"os"
 
 	"github.com/devries/advent_of_code_2021/utils"
+	"github.com/spf13/pflag"
 )
 
 func main() {
+	pflag.Parse()
 	f, err := os.Open("../inputs/day25.txt")
 	utils.Check(err, "error opening input")
 	defer f.Close()
@@ -24,12 +26,20 @@ func solve(r io.Reader) int {
 	lines := utils.ReadLines(r)
 
 	width, height, grid := parseInput(lines)
+	if utils.Verbose {
+		fmt.Print("\x1b[2J")
+	}
 
 	steps := 0
 	var newGrid map[utils.Point]rune
 
 	for {
 		motion := false
+		if utils.Verbose {
+			fmt.Printf("\033[3J\033[H")
+			printGrid(width, height, grid)
+		}
+
 		// Iterate
 		newGrid = make(map[utils.Point]rune)
 
@@ -93,4 +103,18 @@ func parseInput(lines []string) (int, int, map[utils.Point]rune) {
 	}
 
 	return x, y, res
+}
+
+func printGrid(xsize int, ysize int, grid map[utils.Point]rune) {
+	for j := 0; j < ysize; j++ {
+		for i := 0; i < xsize; i++ {
+			c := grid[utils.Point{X: i, Y: j}]
+			if c == 0 {
+				fmt.Printf(".")
+			} else {
+				fmt.Printf("%c", c)
+			}
+		}
+		fmt.Printf("\n")
+	}
 }
