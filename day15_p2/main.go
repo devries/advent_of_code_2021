@@ -119,7 +119,7 @@ func solveGrid(grid Grid) int {
 
 		for _, d := range utils.Directions {
 			next := item.Point.Add(d)
-			value, ok := grid.Points[item.Point.Add(d)]
+			value, ok := grid.Points[next]
 			if ok {
 				qi := allpoints[next]
 				newscore := item.Score + value
