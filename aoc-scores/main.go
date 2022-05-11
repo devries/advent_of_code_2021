@@ -169,7 +169,7 @@ func main() {
 			fmt.Printf("%*s did not complete any stars\n", maxNameLength, u.Name)
 		} else {
 			finished := time.Unix(u.Finish, 0)
-			fmt.Printf("%*s finished %d starts on %s\n", maxNameLength, u.Name, u.Stars, finished.Format("January 2, 2006 at 03:04 PM"))
+			fmt.Printf("%*s finished %d stars on %s\n", maxNameLength, u.Name, u.Stars, finished.Format("January 2, 2006 at 03:04 PM"))
 		}
 	}
 }
