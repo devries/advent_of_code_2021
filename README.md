@@ -124,6 +124,7 @@
   was essentially being added onto a stack in register z with an added constant
   and some inputs were being popped off and compared to these values with the
   addition of a second constant. Once the pairings and constants are worked out
-  the maximum and minimum solutions can be derived.
+  the maximum and minimum solutions can be derived. This problem was a pain, and
+  I needed help with the stack register idea.
 
 - [Day 25: Sea Cucumber](https://adventofcode.com/2021/day/25) - [part 1](day25_p1/main.go)
